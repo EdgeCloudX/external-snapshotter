@@ -32,5 +32,9 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build & Push Docker image
       run: |
+        export arch=arm64
         make
-        docker buildx build -t ${{ secrets.DOCKERHUB_USERNAME }}/snapshot-controller:$VERSION -f cmd/snapshot-controller/Dockerfile --push --platform=linux/arm64,linux/amd64 .
+        docker buildx build -t ${{ secrets.DOCKERHUB_USERNAME }}/snapshot-controller:$VERSION -f cmd/snapshot-controller/Dockerfile --push --platform=linux/arm64 .
+        export arch=amd64
+        make
+        docker buildx build -t ${{ secrets.DOCKERHUB_USERNAME }}/snapshot-controller:$VERSION -f cmd/snapshot-controller/Dockerfile --push --platform=linux/amd64 .
