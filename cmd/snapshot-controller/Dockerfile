@@ -1,4 +1,4 @@
-FROM golang:1.15.15-alpine3.14 AS builder
+FROM 1.16.15-alpine3.15 AS builder
 RUN apk --no-cache add gcc git make bash
 RUN git config --global http.version HTTP/1.1
 ADD . snapshot-controller
@@ -10,5 +10,5 @@ LABEL maintainers="Kubernetes Authors"
 LABEL description="Snapshot Controller"
 ARG binary=./bin/snapshot-controller
 
-COPY --from=builder ./bin/snapshot-controller  snapshot-controller
+COPY --from=builder ./snapshot-controller/bin/snapshot-controller  snapshot-controller
 ENTRYPOINT ["/snapshot-controller"]
