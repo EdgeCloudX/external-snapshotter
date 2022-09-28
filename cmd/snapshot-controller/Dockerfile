@@ -1,5 +1,5 @@
 FROM golang:1.15.15-alpine3.14 AS builder
-RUN apk --no-cache add gcc git make
+RUN apk --no-cache add gcc git make bash
 RUN git config --global http.version HTTP/1.1
 ADD . snapshot-controller
 WORKDIR snapshot-controller
