@@ -3,6 +3,7 @@ RUN apk --no-cache add gcc git make bash
 RUN git config --global http.version HTTP/1.1
 ADD . snapshot-controller
 WORKDIR snapshot-controller
+RUN echo $PWD
 RUN make
 
 FROM gcr.io/distroless/static:latest
