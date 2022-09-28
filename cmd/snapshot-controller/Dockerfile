@@ -10,5 +10,5 @@ LABEL maintainers="Kubernetes Authors"
 LABEL description="Snapshot Controller"
 ARG binary=./bin/snapshot-controller
 
-COPY ${binary} snapshot-controller
+COPY --from=builder ./bin/snapshot-controller  snapshot-controller
 ENTRYPOINT ["/snapshot-controller"]
